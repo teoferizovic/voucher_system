@@ -50,18 +50,9 @@ class VoucherController extends Controller
 
         }
         
-        if ($this->voucherService->createVoucher($request->all())) {
+        $voucher = $this->voucherService->createVoucher($request->all());
 
-        	return response()->json([
-	            	'message' => 'Successfully created data!'
-	        ], 201);
-
-        }
-
-        return response()->json([
-	    	'message' => 'Problem with saving data'
-	    ], 500);
-
+    	return new VoucherResource($voucher);
     }
 
     public function update(string $code) {

@@ -18,6 +18,7 @@ class AuthController extends Controller
      * Display a login view.
      *
      * @return Response
+     * 
      */
     public function index(){
         return view('auth.login');
@@ -27,6 +28,7 @@ class AuthController extends Controller
      * Display a registration view.
      *
      * @return Response
+     * 
      */
     public function registration() {
         return view('auth.registration');
@@ -35,7 +37,10 @@ class AuthController extends Controller
     /**
      * Function used for login.
      *
+     * @param $request UserLoginRequest
+     * 
      * @return Redirect
+     * 
      */
     public function postLogin(UserLoginRequest $request) {
         
@@ -51,7 +56,10 @@ class AuthController extends Controller
     /**
      * Function used for registration.
      *
+     * @param  $request UserRegisterRequest
+     * 
      * @return Redirect
+     * 
      */
     public function postRegistration(UserRegisterRequest $request) {  
 
@@ -62,10 +70,11 @@ class AuthController extends Controller
         return redirect("login")->with(['success' => 'Registration successfully!']);
     }
 
-   /**
+    /**
      * Function used for logout.
      *
      * @return Redirect
+     * 
      */
     public function logout() {
         

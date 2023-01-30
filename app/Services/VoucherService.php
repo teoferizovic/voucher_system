@@ -9,6 +9,14 @@ use App\VoucherStatus;
 
 class VoucherService {
 
+	/**
+     * Function to get all vouchers
+     *
+     * @param $id Int || null
+     * 
+     * @return Collection
+     * 
+     */
 	public function getVouchers($id = null) {
 
 		if($id) {
@@ -18,6 +26,14 @@ class VoucherService {
 		return Voucher::with('voucherType','voucherStatus', 'user')->paginate(5);
 	}
 
+	/**
+     * Function to get vouchers by user_id
+     *
+     * @param $userId Int
+     * 
+     * @return Collection
+     * 
+     */
 	public function getVouchersByUser(int $userId) {
 
 		return Voucher::with('voucherType','voucherStatus', 'user')
@@ -25,6 +41,14 @@ class VoucherService {
 					  ->paginate(5);
 	}
 
+	/**
+     * Function to get not used vouchers by user_id
+     *
+     * @param $userId Int
+     * 
+     * @return Collection
+     * 
+     */
 	public function getNonUsedVouchersByUser(int $userId) {
 		
 		return Voucher::where('user_id', $userId)
@@ -32,6 +56,14 @@ class VoucherService {
 					  ->get();
 	}
 
+	/**
+     * Function to create new Voucher
+     *
+     * @param $data Array
+     * 
+     * @return Voucher
+     * 
+     */
 	public function createVoucher(array $data) : Voucher {
 		
 		$voucher = Voucher::create([
@@ -45,6 +77,14 @@ class VoucherService {
 		return $voucher; 
 	}
 
+	/**
+     * Function to update Voucher
+     *
+     * @param $code String
+     * 
+     * @return Bool
+     * 
+     */
 	public function updateVoucher(string $code) : bool {
 
 		$voucher = Voucher::where('code', $code)
@@ -62,6 +102,14 @@ class VoucherService {
 
 	}
 
+	/**
+     * Function to delete Voucher
+     *
+     * @param $code String
+     * 
+     * @return Bool
+     * 
+     */
 	public function deleteVoucher(string $code) : bool {
 
 		$voucher = Voucher::where('code', $code)->first();

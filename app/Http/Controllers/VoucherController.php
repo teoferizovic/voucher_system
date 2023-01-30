@@ -19,6 +19,7 @@ class VoucherController extends Controller
      * Display a dashboard view.
      *
      * @return Response
+     * 
      */
     public function index() {
     	$vouchers = $this->voucherService->getVouchersByUser(Auth::user()->id);
@@ -26,18 +27,20 @@ class VoucherController extends Controller
     }
 
     /**
-     * Display a dashboard view.
+     * Display a create voucher view.
      *
      * @return Response
+     * 
      */
     public function create() {
     	return view('voucher.create', ['voucherTypes' => VoucherType::all()]);
     }
 
     /**
-     * Function used for login.
+     * Function used to store new Voucher.
      *
      * @return Redirect
+     * 
      */
     public function store(Request $request) {
         

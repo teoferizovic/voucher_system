@@ -18,6 +18,12 @@ class VoucherController extends Controller
         $this->voucherService = $voucherService;
     }
 
+    /**
+     * Show all or voucher by id.
+     *
+     * @return Response
+     * 
+     */
     public function index($id = null) {
         
         if ($id) {
@@ -40,6 +46,14 @@ class VoucherController extends Controller
         
     }
 
+    /**
+     * Create new Voucher
+     *
+     * @param $request VoucherCreateRequest
+     * 
+     * @return Response
+     * 
+     */
     public function create(VoucherCreateRequest $request) {
         
         if ($this->voucherService->getNonUsedVouchersByUser($request->user_id)->count() >= 5) {
@@ -55,6 +69,14 @@ class VoucherController extends Controller
     	return new VoucherResource($voucher);
     }
 
+    /**
+     * Update Voucher
+     *
+     * @param $code String
+     * 
+     * @return Response
+     * 
+     */
     public function update(string $code) {
     	
     	$updated = $this->voucherService->updateVoucher($code);
@@ -73,6 +95,14 @@ class VoucherController extends Controller
        
     }
 
+    /**
+     * Delete Voucher
+     *
+     * @param $code String
+     * 
+     * @return Response
+     * 
+     */
     public function delete(string $code) {
         
         $deleted = $this->voucherService->deleteVoucher($code);
